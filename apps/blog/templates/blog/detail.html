@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Detalles
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <!-- Begin Content -->
+    <div class="main-content">
+      <!-- Begin Article -->
+      <div class="row">
+        <!-- Post -->
+        <div class="col-sm-8">
+          <div class="mainheading">
+            <!-- Begin Post Categories -->
+            <div class="after-post-tags">
+              <ul class="tags pt-3">
+                 {% for tag in post.tags.all|slice:":5" %}
+                  <li>
+                    <a href="#">{{ tag.name }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <!-- End Post Categories -->
+            <h1 class="posttitle">{{ post.title }}</h1>
+          </div>
+
+          <!-- Begin Post Featured Image -->
+          <img class="featured-image img-fluid" src="{{ post.cover_image }}" alt="" />
+          <!-- End Post Featured Image -->
+
+          <!-- Begin Post Content -->
+          <div class="article-post">
+{#            <p>The first mass-produced book to deviate from a rectilinear format, at least in the United States, is thought to be this 1863 edition of Red Riding Hood, cut into the shape of the protagonist herself with the troublesome wolf curled at her feet. Produced by the Boston-based publisher Louis Prang, this is the first in their “Doll Series”, a set of five “die-cut” books, known also as shape books — the other titles being Robinson Crusoe, Goody Two-Shoes (also written by Red Riding Hood author Lydia Very), Cinderella, and King Winter.</p>#}
+{#            <p>As for this particular rendition of Charles Perrault’s classic tale, the text and design is by Lydia Very (1823-1901), sister of Transcendentalist poet Jones Very. The gruesome ending of the original — which sees Little Red Riding Hood being gobbled up as well as her grandmother — is avoided here, the gore giving way to the less bloody aims of the morality tale, and the lesson that one should not disobey one’s mother.</p>#}
+{#            <blockquote>#}
+{#              <p>It would seem the claim could also extend to die cut books in general, as we can’t find anything sooner, but do let us know in the comments if you have further light to shed on this! Such books are, of course, still popular in children’s publishing today, though the die cutting is not now limited to mere outlines, as evidenced in a beautiful 2014 version of the same Little Red Riding Hood story.</p>#}
+{#            </blockquote>#}
+{#            <p>An 1868 Prang catalogue would later claim that such “books in the shape of a regular paper Doll… originated with us”.</p>#}
+{#            <p>The die cut has also been employed in the non-juvenile sphere as well, a recent example being Jonathan Safran Foer’s ambitious Tree of Codes.</p>#}
+{#            <div class="clearfix"></div>#}
+            <p>
+              {{ post.content }}
+            </p>
+          </div>
+          <!-- End Post Content -->
+
+          <!-- Begin Post Date -->
+          <p>
+            <small>
+              <span class="post-date">
+                <time class="post-date" datetime="2018-01-12">{{ post.published_at }}</time>
+              </span>
+            </small>
+          </p>
+          <!-- End Post Date -->
+
+          <!-- Begin Prev/Next -->
+          <div class="row PageNavigation mt-4 prevnextlinks">
+            <div class="col-md-6 pl-0">
+              <a class="thepostlink" href="#">« Leer Anterior</a>
+            </div>
+            <div class="col-md-6 pr-0">
+              <a class="thepostlink" href="#">Leer siguiente »</a>
+            </div>
+          </div>
+          <!-- End Prev/Next -->
+
+          <!-- Begin Author Box -->
+          <div class="row post-top-meta">
+            <div class="col-md-2">
+              <img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal" />
+            </div>
+            <div class="col-md-10">
+              <a target="_blank" class="author-name" href="#">{{ post.author.first_name }}</a>
+              <a target="_blank" href="#" class="btn follow">Follow</a>
+              <span class="author-description">Bato bien rotomisino apoco no</span>
+            </div>
+          </div>
+          <!-- End Author Box -->
+
+          <!-- Begin Comments -->
+          <section>
+            <div class="container my-5 py-5">
+              <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-10 col-xl-8 w-100">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex flex-start align-items-center">
+                        <img class="rounded-circle shadow-1-strong me-3" src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="60" height="60" />
+                        <div>
+                          <h6 class="fw-bold text-primary mb-1">Lily Coleman</h6>
+                          <p class="text-muted small mb-0">Shared publicly - Jan 2020</p>
+                        </div>
+                      </div>
+
+                      <p class="mt-3 mb-4 pb-2 comment-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.</p>
+
+                      <div class="small d-flex justify-content-start">
+                        <a href="#!" class="d-flex align-items-center me-3">
+                          <i class="far fa-thumbs-up me-2"></i>
+                          <p class="mb-0">Like</p>
+                        </a>
+                        <a href="#!" class="d-flex align-items-center me-3">
+                          <i class="far fa-comment-dots me-2"></i>
+                          <p class="mb-0">Comment</p>
+                        </a>
+                        <a href="#!" class="d-flex align-items-center me-3">
+                          <i class="fas fa-share me-2"></i>
+                          <p class="mb-0">Share</p>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="card-footer py-3 border-0">
+                      <div class="d-flex flex-start align-items-start w-100">
+                        <img class="rounded-circle shadow-1-strong me-3" src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="40" height="40" />
+                        <div class="w-100">
+                          <div class="form-outline">
+                            <textarea class="form-control rounded" id="textAreaExample" rows="4"></textarea>
+                            <label class="form-label" for="textAreaExample">Message</label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="float-end mt-2 pt-1">
+                        <button type="button" class="btn btn-primary btn-sm">Post comment</button>
+                        <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- End Comments -->
+        </div>
+        <!-- End Post -->
+
+        <!-- Begin Sidebar -->
+        <div class="col-sm-4">
+          <div class="sidebar-right">
+            <div class="sidebar">
+              <div class="sidebar-section">
+                <h5><span>Suscríbete</span></h5>
+                <form>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label text-white">Email address</label>
+                    <input type="email" class="form-control rounded" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="juanito@example.com" />
+                    <div id="emailHelp" class="form-text text-white">No compartiremos tu correo electrónico con nadie</div>
+                  </div>
+                  <div class="d-grid gap-2">
+                    <button class="btn btn-primary" type="submit">Suscribirme</button>
+                  </div>
+                </form>
+              </div>
+              <div class="sidebar-section">
+                <h5><span>Util</span></h5>
+                <ul>
+                  <li>
+                    <a href="#">Ejemplo</a>
+                  </li>
+                  <li>
+                    <a href="#">Ejemplo</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Sidebar -->
+      </div>
+      <!--  End Article  -->
+    </div>
+  </div>
+{% endblock %}

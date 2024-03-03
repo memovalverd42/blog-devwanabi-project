@@ -1,0 +1,174 @@
+{% extends 'base.html' %} 
+
+{% block title %} Inicio {% endblock title %} 
+
+{% block content %}
+  
+<!-- Begin Site Welcome -->
+<section class="intro">
+  <div class="wrapintro">
+    <h1>Dev Wanabi</h1>
+    <h2>Un Blog donde hablamos de programación y tecnologia en general</h2>
+  </div>
+</section>
+<!-- End Site Welcome -->
+
+<div class="container">
+
+  <div class="main-content">
+
+    <!-- Begin Recent Posts -->
+    <section class="blog-area featured-posts">
+      <div class="section-title">
+        <h2><span>Recientes</span></h2>
+      </div>
+
+      <div class="container">
+        <div class="row justify-content-center">
+          
+          
+          {% for post in recent_posts %}
+            
+            <!-- Begin single blog -->
+            <div class="col-lg-4 col-md-8 col-sm-10 mb-4">
+              <div class="single-blog blog-style-one">
+                <div class="blog-image">
+                
+                  <a href="#"><img src="{{ post.cover_image }}" alt="Blog"/></a>
+                  
+                  <a href="#" class="category">{{ post.tags.first }}</a>
+                  
+                </div>
+  
+                <div class="blog-content">
+                  <h5 class="blog-title">
+                    <a href="{{ post.get_absolute_url }}">
+                      {{ post.title }}
+                    </a>
+                  </h5>
+                  <span><i class="lni lni-calendar"></i>{{ post.published_at }}</span>
+                  <span><i class="lni lni-comments-alt"></i>{{ post.author.first_name }}</span>
+  
+                  <p class="text">
+                    {{ post.content|slice:":100" }}...
+                  </p>
+  
+                  <a class="more" href="#">Leer más</a>
+                </div>
+              </div>
+            </div>
+            <!-- End single blog -->
+          	
+          {% endfor %}
+          
+          
+        </div>
+      </div>
+    </section>
+    <!-- End Recent Posts -->
+  
+
+    <!-- Begin Posts Index -->
+    <section class="row">
+      
+      <!-- Begin Sidebar -->
+      <aside class="col-sm-4">
+        <div class="sidebar">
+          <div class="sidebar-section">
+            <h5><span>Suscríbete</span></h5>
+            <form>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label text-white"
+                  >Email address</label
+                >
+                <input
+                  type="email"
+                  class="form-control rounded"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  placeholder="juanito@example.com"
+                />
+                <div id="emailHelp" class="form-text text-white">
+                  No compartiremos tu correo electrónico con nadie
+                </div>
+              </div>
+              <div class="d-grid gap-2">
+                <button class="btn btn-primary" type="submit">
+                  Suscribirme
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="sidebar-section">
+            <h5><span>Util</span></h5>
+            <ul>
+              <li><a href="#">Ejemplo</a></li>
+              <li><a href="#">Ejemplo</a></li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+      <!-- End Sidebar -->
+
+      <div class="col-sm-8">
+      
+        <div class="section-title">
+          <h2><span>Todos los posts</span></h2>
+        </div>
+
+        <div class="masonrygrid row listrecent">
+          
+          {% for post in posts %}
+            
+          <!-- begin post -->
+          <div class="col-md-6 grid-item mb-4">
+            <div class="single-blog blog-style-one">
+              <div class="blog-image">
+                <a href="#">
+                  <img
+                    src="{{ post.cover_image }}"
+                    alt="Blog"
+                  />
+                </a>
+                <a href="#" class="category">Science</a>
+              </div>
+              <div class="blog-content">
+                <h5 class="blog-title">
+                  <a href="#">
+                    {{ post.title }}
+                  </a>
+                </h5>
+                <span><i class="lni lni-calendar"></i>{{ post.published_at }}</span>
+                <span><i class="lni lni-comments-alt"></i>{{ post.author.first_name }}</span>
+                <p class="text">
+                  {{ post.content|slice:":100" }}...
+                </p>
+                <a class="more" href="#">READ MORE</a>
+              </div>
+            </div>
+          </div>
+          <!-- end post -->
+          	
+          {% endfor %}
+
+          <!-- Begin Pagination -->
+          <div class="bottompagination">
+            <div class="navigation">
+              <nav class="pagination">
+                <span class="page-number"> Page 1 of 1 </span>
+              </nav>
+            </div>
+          </div>
+          <!-- End Pagination -->
+          
+        </div>
+
+      </div>
+      
+    </section>
+
+  </div>
+
+</div> 
+  
+{% endblock content %}
