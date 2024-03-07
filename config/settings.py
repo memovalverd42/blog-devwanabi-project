@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # Third Party Apps
     'taggit',
     'cloudinary',
+    'easy_thumbnails',
 ]
 
 FIXTURE_DIRS = [

@@ -2,10 +2,13 @@
 Vistas para el blog
 """
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.http import HttpRequest
+from django.shortcuts import get_object_or_404
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormView
 from django.contrib.auth.models import User
+from taggit.models import Tag
 
 from .forms import PostForm
 from .models.post_model import Post
@@ -20,7 +23,7 @@ class HomeView(ListView):
     template_name = 'blog/home.html'
     context_object_name = 'posts'
     queryset = Post.published.all()
-    paginate_by = 10
+    paginate_by = 4
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -45,7 +48,19 @@ class PostList(ListView):
     template_name = 'blog/list.html'
     context_object_name = 'posts'
     queryset = Post.published.all()
-    paginate_by = 10
+    paginate_by = 9
+
+    def get_queryset(self):
+        tag_slug = self.kwargs.get('tag_slug')
+        if tag_slug:
+            tag = get_object_or_404(Tag, slug=tag_slug)
+            return Post.published.filter(tags__in=[tag])
+        return super().get_queryset()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tag_slug'] = self.kwargs.get('tag_slug')
+        return context
 
 
 class PostCreateView(FormView):

@@ -3,5 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="Pipenv (blog_devwanabi_project)" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Pipenv (blog_devwanabi_project)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Pipenv (blog-devwanabi-project)" project-jdk-type="Python SDK" />
 </project>

@@ -83,7 +83,7 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdown01">
                 {% for tag in tags %}
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="{% url 'blog:post_list_by_tag' tag.slug %}">
                     {{ tag.name }}
                   </a>
                 {% endfor %}

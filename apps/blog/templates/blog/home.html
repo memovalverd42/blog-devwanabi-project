@@ -1,4 +1,5 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
+{% load static %}
 
 {% block title %} Inicio {% endblock title %} 
 
@@ -33,11 +34,14 @@
             <div class="col-lg-4 col-md-8 col-sm-10 mb-4">
               <div class="single-blog blog-style-one">
                 <div class="blog-image">
-                
-                  <a href="#"><img src="{{ post.cover_image }}" alt="Blog"/></a>
-                  
-                  <a href="#" class="category">{{ post.tags.first }}</a>
-                  
+                    {% if post.cover_image %}
+                    <img src="{{ post.cover_image }}" alt="Blog"/>
+                    {% else %}
+                    <img src="{% static 'assets/images/cover_default.jpg' %}" alt="Blog"/>  
+                    {% endif %}
+                  {% with tag=post.tags.first %}
+                  <a href="{% url 'blog:post_list_by_tag' tag.slug %}" class="category">{{ tag.name }}</a>
+                  {% endwith %}
                 </div>
   
                 <div class="blog-content">
@@ -124,13 +128,16 @@
           <div class="col-md-6 grid-item mb-4">
             <div class="single-blog blog-style-one">
               <div class="blog-image">
-                <a href="#">
-                  <img
-                    src="{{ post.cover_image }}"
-                    alt="Blog"
-                  />
-                </a>
-                <a href="#" class="category">Science</a>
+
+                {% if post.cover_image %}
+                <a href="#"><img src="{{ post.cover_image }}" alt="Blog"/></a>  
+                {% else %}
+                <a href="#"><img src="{% static 'assets/images/cover_default.jpg' %}" alt="Blog"/></a>  
+                {% endif %} 
+
+                {% with tag=post.tags.first %}
+                <a href="{% url 'blog:post_list_by_tag' tag.slug %}" class="category">{{ tag.name }}</a>
+                {% endwith %}
               </div>
               <div class="blog-content">
                 <h5 class="blog-title">
@@ -155,7 +162,8 @@
           <div class="bottompagination">
             <div class="navigation">
               <nav class="pagination">
-                <span class="page-number"> Page 1 of 1 </span>
+                <span class="page-number">  </span>
+                <a href="{% url 'blog:post-list' %}" class="page-number"> Todos los posts </a>
               </nav>
             </div>
           </div>

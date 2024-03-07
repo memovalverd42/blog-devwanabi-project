@@ -42,6 +42,8 @@ class PostForm(forms.ModelForm):
         :return: bool
         """
         valid = super().is_valid()
+        print(f'{valid=}')
+        print(f'{self.errors=}')
         if not valid:
             if 'cover_image' in self.errors:
                 del self.errors['cover_image']
@@ -59,7 +61,7 @@ class PostForm(forms.ModelForm):
         post: Post = super().save(commit=False)
         post.cover_image = ''
         tags: List[str] | None = self.cleaned_data.get('tags')
-        print('tags', self.cleaned_data)
+        # print('tags', self.cleaned_data)
         if author:
             post.author = author
             post.save()
