@@ -7,7 +7,8 @@ from django.db.models import QuerySet
 from django.urls import reverse
 from django.utils.text import slugify
 from taggit.managers import TaggableManager
-from cloudinary.models import CloudinaryField
+
+from tinymce.models import HTMLField
 
 from apps.core.models import TimeStampedModel
 
@@ -51,6 +52,8 @@ class Post(TimeStampedModel):
     status = models.CharField(max_length=2,
                               choices=Status.choices,
                               default=Status.DRAFT)
+
+    content2 = HTMLField(blank=True, null=True)
 
     # Managers
     objects = models.Manager()

@@ -1,0 +1,63 @@
+{#{% extends "account/base_entrance.html" %}#}
+{% load allauth account %}
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Login - DevWanabi</title>
+  </head>
+
+  <body class="layout-default">
+    <h1>Login Form</h1>
+    
+    {% url 'account_login' as login_url %}
+    <form class="row g-3" method="post" action={{ login_url }}">
+      {% csrf_token %}
+      <div class="col-auto">
+        <label for="staticEmail2" class="visually-hidden">Email</label>
+        <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@example.com">
+      </div>
+      <div class="col-auto">
+        <label for="inputPassword2" class="visually-hidden">Password</label>
+        <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
+      </div>
+    </form>
+  </body>
+</html>
+
+
+{#{% block content %}#}
+{#    <p>#}
+{#        {% blocktrans %}If you have not created an account yet, then please#}
+{#    <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}#}
+{#    </p>#}
+{#    {% url 'account_login' as login_url %}#}
+{#    {% element form form=form method="post" action=login_url tags="entrance,login" %}#}
+{#        {% slot body %}#}
+{#            {% csrf_token %}#}
+{#            {% element fields form=form unlabeled=True %}#}
+{#            {% endelement %}#}
+{#            {% if redirect_field_value %}#}
+{#                <input type="hidden"#}
+{#                       name="{{ redirect_field_name }}"#}
+{#                       value="{{ redirect_field_value }}" />#}
+{#            {% endif %}#}
+{#        {% endslot %}#}
+{#        {% slot actions %}#}
+{#            {% element button type="submit" tags="prominent,login" %}#}
+{#                {% trans "Sign In" %}#}
+{#            {% endelement %}#}
+{#        {% endslot %}#}
+{#    {% endelement %}#}
+{#    {% if SOCIALACCOUNT_ENABLED %}#}
+{#        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}#}
+{#    {% endif %}#}
+{#{% endblock content %}#}
